@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <!--=============== FAVICON ===============-->
+      <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+      <!--=============== REMIXICONS ===============-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
+
+      <!--=============== SWIPER CSS ===============-->
+      <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+
+      <!--=============== CSS ===============-->
+      <link rel="stylesheet" href="assets/css/styles.css">
+
+      <title>Wishlist</title>
+   </head>
+   <body>
+      <!--==================== HEADER ====================-->
+      <header class="header" id="header">
+         <nav class="nav container">
+            <a href="#" class="nav__logo">
+                <i class="ri-shopping-cart-line"></i> 
+                <span>Wishlist</span>
+            </a>
+
+            <!-- Desktop only: nav links sit between logo and actions -->
+            <ul class="nav__desktop-links">
+              <li><a href="#home"  class="nav__link"><i class="ri-home-9-line"></i><span>Home</span></a></li>
+              <li><a href="#lists" class="nav__link"><i class="ri-file-list-3-line"></i><span>Lists</span></a></li>
+            </ul>
+
+            <div class="nav__actions">
+                <i class="ri-search-line search-button" id="search-button"></i>
+                <i class="ri-user-3-line login-button" id="login-button"></i>
+                <i class="ri-moon-line change-theme" id="theme-button"></i>
+            </div>
+         </nav>
+      </header>
+
+      <!-- Mobile bottom nav -->
+      <div class="nav__menu" id="nav-menu">
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a href="#home" class="nav__link">
+              <i class="ri-home-9-line"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a href="#lists" class="nav__link">
+              <i class="ri-file-list-3-line"></i>
+              <span>Lists</span>
+            </a>
+          </li>
+        </ul>
+        <!-- Scroll-up lives inside the nav bar on mobile -->
+        <a href="#" class="nav__scrollup" id="nav-scroll-up" aria-label="Nach oben">
+          <i class="ri-arrow-up-line"></i>
+        </a>
+      </div>
+
+      <!--==================== SEARCH ====================-->
+        <div class="search" id="search-content">
+            <form action="" class="search__form">
+                <i class="ri-search-line search__icon"></i>
+                <input type="search" placeholder="Wonach suchst du?" class="search__input">
+            </form>
+        <!-- Close search button-->
+         <i class="ri-close-line search__close" id="search-close" ></i>
+      </div>
+      <!--==================== LOGIN ====================-->
+      <div class="login" id="login-content">
+        <div class="login__card">
+          <div class="login__orb login__orb--1"></div>
+          <div class="login__orb login__orb--2"></div>
+
+          <!-- ── AUTH FORM (shown when logged out) ── -->
+          <form action="" class="login__form" id="auth-form">
+            <div class="login__header">
+              <div class="login__icon-wrap">
+                <i class="ri-user-3-line"></i>
+              </div>
+              <h3 class="login__title" id="auth-title">Willkommen zurück</h3>
+              <p class="login__subtitle" id="auth-subtitle">Melde dich in deinem Account an</p>
+            </div>
+            <div class="login__group">
+              <div class="login__field">
+                <i class="ri-mail-line login__field-icon"></i>
+                <input type="email" placeholder="E-Mail Adresse" id="login-email" class="login__input" autocomplete="email" />
+              </div>
+              <div class="login__field">
+                <i class="ri-lock-line login__field-icon"></i>
+                <input type="password" placeholder="Passwort" id="login-pass" class="login__input" autocomplete="current-password" />
+              </div>
+            </div>
+            <p id="auth-feedback" class="auth__feedback" aria-live="polite"></p>
+            <button type="button" class="login__button" id="auth-submit-btn">
+              <span>Login</span>
+              <i class="ri-arrow-right-line"></i>
+            </button>
+            <div class="login__footer">
+              <a href="#" class="login__forgot" id="auth-forgot">Passwort vergessen?</a>
+              <span class="login__divider">·</span>
+              <span class="login__signup-text">
+                <span id="auth-toggle-label">Noch kein Account?</span>
+                <a href="#" id="auth-toggle-link"> Registrieren</a>
+              </span>
+            </div>
+          </form>
+
+          <!-- ── PROFILE PANEL (shown when logged in) ── -->
+          <div class="profile__panel" id="profile-panel" style="display:none;">
+            <div class="profile__header">
+              <div class="profile__avatar">
+                <i class="ri-user-3-line"></i>
+              </div>
+              <p class="profile__greeting">Eingeloggt als</p>
+              <p class="profile__email" id="profile-email">—</p>
+            </div>
+            <div class="profile__divider"></div>
+            <button class="profile__logout" id="logout-btn">
+              <i class="ri-logout-box-r-line"></i>
+              <span>Abmelden</span>
+            </button>
+          </div>
+
+          <button class="login__close" id="login-close" aria-label="Schließen">
+            <i class="ri-close-line"></i>
+          </button>
+        </div>
+      </div>
+
+      <!--========== LIST ITEMS MODAL ==========-->
+      <div class="modal-overlay" id="items-overlay">
+        <div class="modal items-modal">
+          <div class="modal__orb modal__orb--1"></div>
+          <div class="modal__orb modal__orb--2"></div>
+
+          <div class="modal__header">
+            <div class="items-modal__title-row">
+              <span class="items-modal__emoji" id="items-list-emoji">⭐</span>
+              <h3 class="modal__title" id="items-list-name">Liste</h3>
+            </div>
+            <p class="modal__subtitle">Produkte in dieser Liste</p>
+          </div>
+
+          <!-- URL scraper input -->
+          <div class="items-modal__add">
+            <div class="items-modal__url-row">
+              <div class="modal__field" style="flex:1">
+                <i class="ri-link modal__field-icon"></i>
+                <input type="url" id="item-url-input" class="modal__input"
+                  placeholder="Produkt-Link einfügen..." />
+              </div>
+              <button class="modal__btn modal__btn--create items-modal__scrape-btn" id="item-scrape-btn">
+                <i class="ri-search-line"></i>
+              </button>
+            </div>
+            <p id="items-feedback" class="modal__feedback" aria-live="polite"></p>
+
+            <!-- Preview card — hidden until scrape succeeds -->
+            <div class="scrape-preview" id="scrape-preview" style="display:none;">
+              <div class="scrape-preview__img-wrap">
+                <img id="scrape-img" src="" alt="" class="scrape-preview__img" />
+              </div>
+              <div class="scrape-preview__body">
+                <input type="text" id="scrape-titel" class="modal__input scrape-preview__titel"
+                  placeholder="Produkttitel" maxlength="120" />
+                <input type="text" id="scrape-preis" class="modal__input scrape-preview__preis"
+                  placeholder="Preis (€)" />
+              </div>
+              <button class="modal__btn modal__btn--create scrape-preview__save" id="item-add-btn">
+                <i class="ri-check-line"></i> Speichern
+              </button>
+            </div>
+          </div>
+
+          <!-- Items list -->
+          <div class="items-modal__list" id="items-list"></div>
+
+          <button class="modal__close" id="items-close" aria-label="Schließen">
+            <i class="ri-close-line"></i>
+          </button>
+        </div>
+      </div>
+
+      <!--==================== MAIN ====================-->
+      <main class="main">
+         <!--==================== HOME ====================-->
+         <section class="home section" id="home">
+            <div class="home__container container grid">
+                <div class="home__data">
+                    <h1 class="home__title">Deine Wunschliste</h1>
+                    <p class="home__description">Erstelle und verwalte deine persönlichen Wunschlisten an einem Ort.</p>
+                    <a href="#" class="button" id="startBtn">Loslegen</a>
+                </div>
+                <div class="home__images">
+                    <div class="home__swiper swiper">
+                        <div class="swiper-wrapper">
+                            <article class="home__article swiper-slide">
+                            <img src="assets/img/home-book-1.png" alt="image" class="home__img">
+                            </article>
+
+                            <article class="home__article swiper-slide">
+                            <img src="assets/img/home-book-2.png" alt="image" class="home__img">
+                            </article>
+
+                            <article class="home__article swiper-slide">
+                            <img src="assets/img/home-book-3.png" alt="image" class="home__img">
+                            </article>
+                        
+                            <article class="home__article swiper-slide">
+                            <img src="assets/img/home-book-4.png" alt="image" class="home__img">
+                            </article>
+                    </div>
+                </div>
+            </div>
+         </section>
+
+         <!--==================== LISTS  ====================-->
+        <!-- fixed invalid HTML: don't nest another <main> -->
+        <div class="lists-container" id="lists">
+          <!-- Lists are loaded from Supabase -->
+        </div>
+
+
+         <!--==================== DISCOUNT ====================-->
+         <section class="discount section" id="discount">
+            
+         </section>
+
+         <!--==================== NEW BOOKS ====================-->
+         <section class="new section" id="new">
+            
+         </section>
+
+         <!--==================== JOIN ====================-->
+         <section class="join section">
+            
+         </section>
+
+         <!--==================== TESTIMONIAL ====================-->
+         <section class="testimonial section" id="testimonial">
+            
+         </section>
+      </main>
+
+      <!--==================== FOOTER ====================-->
+      <footer class="footer">
+         
+      </footer>
+
+      <!--========== ADD LIST FAB ==========-->
+      <button class="fab" id="add-list-btn" aria-label="Liste hinzufügen">
+        <i class="ri-add-line"></i>
+      </button>
+
+      <!--========== ADD LIST MODAL ==========-->
+      <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+          <div class="modal__orb modal__orb--1"></div>
+          <div class="modal__orb modal__orb--2"></div>
+
+          <div class="modal__header">
+            <h3 class="modal__title">Neue Liste erstellen</h3>
+            <p class="modal__subtitle">Gib deiner Liste einen Namen und ein Symbol</p>
+          </div>
+
+          <div class="modal__body">
+            <!-- List name -->
+            <div class="modal__field">
+              <i class="ri-list-check modal__field-icon"></i>
+              <input type="text" id="list-name-input" class="modal__input" placeholder="Name der Liste..." maxlength="32" />
+            </div>
+
+            <!-- Emoji picker -->
+            <div class="modal__emoji-section">
+              <p class="modal__emoji-label">Symbol wählen</p>
+              <div class="modal__emoji-grid" id="emoji-grid">
+                <!-- filled by JS -->
+              </div>
+              <div class="modal__emoji-custom-wrap">
+                <input type="text" id="emoji-custom" class="modal__input modal__input--small" placeholder="Oder eigenes Emoji / Text..." maxlength="4" />
+              </div>
+            </div>
+
+            <p id="modal-feedback" class="modal__feedback" aria-live="polite"></p>
+          </div>
+
+          <div class="modal__actions">
+            <button class="modal__btn modal__btn--cancel" id="modal-cancel">Abbrechen</button>
+            <button class="modal__btn modal__btn--create" id="modal-create">
+              <i class="ri-check-line"></i> Erstellen
+            </button>
+          </div>
+
+          <button class="modal__close" id="modal-close" aria-label="Schließen">
+            <i class="ri-close-line"></i>
+          </button>
+        </div>
+      </div>
+
+      <!--========== SCROLL UP ==========-->
+      <a href="#" class="scrollup" id="scroll-up">
+        <i class="ri-arrow-up-line"></i>
+      </a>
+
+      <!--=============== SCROLLREVEAL ===============-->
+      <script src="https://unpkg.com/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+
+      <!--=============== SWIPER JS ===============-->
+      <script src="assets/js/swiper-bundle.min.js"></script>
+
+      <!--=============== SUPABASE JS ===============-->
+        <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+        <script src="assets/js/Supabase.js"></script>
+                <script src="assets/js/main.js"></script>
+   </body>
+</html>
