@@ -1,4 +1,0 @@
-window.supabaseClient = supabase.createClient(
-  'https://avrsjoowusuzriunaept.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF2cnNqb293dXN1enJpdW5hZXB0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg4MTkyNzksImV4cCI6MjA4NDM5NTI3OX0.1H0CZNB10WldijjVEpKcRXfTH2PmDDQqQOMWoGUl2vo'
-);
