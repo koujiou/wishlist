@@ -1,0 +1,4 @@
+in der console
+
+localStorage.clear();
+location.reload();
